@@ -1,0 +1,24 @@
+.row{
+    border: solid 1px deepskyblue;
+    margin: 30px;
+    padding: 30px;
+}
+.posts h4{
+    color: deepskyblue;
+    margin: 50px 40%;
+}
+.posts p{
+    height: 150px;
+    width: 60%;
+    margin: 0 auto;
+}
+.user-info .wrap{
+    padding:10px;
+}
+.user-info label {
+    color: cadetblue;
+    width: 10%;
+}
+.posts {
+    background: #dff0d8;
+}

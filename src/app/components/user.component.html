@@ -1,0 +1,58 @@
+
+<div class="row user-info">
+    <tabset>
+        <tab heading="{{title}}">
+            <div class="col-md-12 wrap">
+                <p><label>Name: </label>  {{name}}</p>
+                <p><label>Address:</label> {{address.street}}, {{address.city}}</p>
+
+                <button (click)="toggleHobbies()" class="btn">{{!showHobbies? "Show Hobbies": "Hide Hobbies"}}</button>
+                <div *ngIf="showHobbies">
+                    <label>Hobbies</label>
+                    <ul>
+                        <li *ngFor="let hobby of hobbies; let i=index;">
+                            <span>{{hobby}}</span> <a class="btn" (click)="deleteHobby(i)">X</a>
+                        </li>
+                    </ul>
+                    <form (submit)="addHobby(hobby.value)">
+                        <label>Add Hobby:</label>
+                        <input type="text" name="city" #hobby />
+                    </form>
+                </div>
+            </div>
+        </tab>
+
+        <tab heading="Edit Info">
+            <div class="col-md-12 wrap">
+               <form>
+                   <label>Name:</label>
+                   <input type="text" name="name" [(ngModel)]="name" /><br><br>
+                   <label>Street:</label>
+                   <input type="text" name="street" [(ngModel)]="address.street" /><br><br>
+                   <label>City:</label>
+                   <input type="text" name="city" [(ngModel)]="address.city" /><br>
+               </form>
+            </div>
+        </tab>
+    </tabset>
+</div>
+<div class="row">
+    <div class="col-md-12 posts">
+        <h2>Posts</h2>
+        <carousel>
+            <slide *ngFor="let post of posts">
+                <h4>{{post.title}}</h4><p>{{post.body}}</p>
+            </slide>
+        </carousel>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-md-6" style="margin: 20px 0;">
+            <pagination [directionLinks]="false" [totalItems]="totalItems" [(ngModel)]="currentPage" (numPages)="smallnumPages = $event"></pagination>
+        </div>
+
+        <div class="col-md-6">
+            <pager [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" pageBtnClass="btn" itemsPerPage="10"></pager>
+        </div>
+    </div>
+</div>
